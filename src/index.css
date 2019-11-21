@@ -1,5 +1,10 @@
+body {
+  margin-left: 300px;
+}
+
 .error {
     color: red;
+    width: 400px;
     background: lightgrey;
     font-size: 20px;
     border-style: solid;
@@ -10,6 +15,7 @@
   
   .success {
     color: green;
+    width: 400px;
     background: lightgrey;
     font-size: 20px;
     border-style: solid;

@@ -4,7 +4,10 @@ import loginService from './services/login'
 import blogsService from './services/blogs'
 import Notification from './components/Notification'
 import BlogForm from './components/BlogForm'
+import LoginForm from './components/Loginform'
+import Togglable from './components/Togglable'
 import './index.css';
+
 
 const App = () => {
 
@@ -18,6 +21,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [isPositive, setIsPositive] = useState(true)
   const [user, setUser] = useState(null)
+  const [loginVisible, setLoginVisible] = useState(false)
 
   useEffect(() => {
     blogsService
@@ -36,6 +40,28 @@ const App = () => {
     }
   }, [])
 
+  const loginForm = () => {
+    const hideWhenVisible = { display: loginVisible ? 'none' : '' }
+    const showWhenVisible = { display: loginVisible ? '' : 'none' }
+    return (
+      <div>
+        <div style={hideWhenVisible}>
+          <button onClick={() => setLoginVisible(true)}>log in</button>
+        </div>
+        <div style={showWhenVisible}>
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleSubmit}
+          />
+          <button onClick={() => setLoginVisible(false)}>cancel</button>
+        </div>
+      </div>
+    )
+  }
+
 
   const handleLogOut = () => {
     localStorage.clear()
@@ -50,7 +76,7 @@ const App = () => {
   }
 
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const user = await loginService.login({
@@ -79,9 +105,6 @@ const App = () => {
       }, 3000)
     }
   }
-
-
-
 
   //------BLOG FORM SUBMIT HANDLER---------------------
   const addBlog = async (event) => {
@@ -128,30 +151,16 @@ const App = () => {
       <div>
         <Notification isPositive={isPositive} message={errorMessage} />
         <h1>Bloglist</h1>
-
-        <h2>Login to application</h2>
-
-        <form onSubmit={handleLogin}>
-          <div>
-            username
-            <input
-              type="text"
-              value={username}
-              name="Username"
-              onChange={({ target }) => setUsername(target.value)}
-            />
-          </div>
-          <div>
-            password
-            <input
-              type="password"
-              value={password}
-              name="Password"
-              onChange={({ target }) => setPassword(target.value)}
-            />
-          </div>
-          <button type="submit">login</button>
-        </form>
+        <Togglable buttonLabel='login'>
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleSubmit}
+          />
+        </Togglable>
+        <loginForm />
       </div>
     )
   }

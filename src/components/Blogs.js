@@ -3,9 +3,13 @@ import React from 'react'
 const Blogs = ({ blog, user }) => {
     return (
         <div>
-            <h4>Title: {blog.title} Author: {blog.author}</h4>
-            <p>Url: {blog.url} Likes: {blog.likes}</p>
+            <p>____________________________________________________________</p>
+            <h3>Title: {blog.title} </h3>
+            <h4>Author: {blog.author}</h4>
+            <h4>Url: {blog.url} </h4>
             <p>Added by: {user.name}</p>
+            <h4>Likes: {blog.likes} <button>Like!</button></h4>
+
         </div >
     )
 }
