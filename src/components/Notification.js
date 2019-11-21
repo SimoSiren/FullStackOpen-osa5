@@ -1,0 +1,23 @@
+import React from 'react'
+import '../index.css';
+
+const Notification = ({ message, isPositive }) => {
+    if (message === null) {
+        return null
+    }
+    else if (isPositive === true) {
+        return (
+            <div className="success">
+                {message}
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="error">
+                {message}
+            </div>
+        )
+    }
+}
+export default Notification
