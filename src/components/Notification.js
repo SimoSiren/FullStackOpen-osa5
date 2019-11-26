@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import '../index.css';
 
 const Notification = ({ message, isPositive }) => {
@@ -20,4 +21,10 @@ const Notification = ({ message, isPositive }) => {
         )
     }
 }
+
+Notification.propTypes = {
+    message: PropTypes.string.isRequired,
+    isPositive: PropTypes.bool.isRequired
+}
+
 export default Notification
