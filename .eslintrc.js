@@ -1,4 +1,6 @@
 module.exports = {
+
+
     "env": {
         "browser": true,
         "es6": true,
@@ -7,6 +9,7 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
+
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -46,4 +49,5 @@ module.exports = {
         "no-console": 0,
         "react/prop-types": 0
     }
+
 };

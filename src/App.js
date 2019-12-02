@@ -6,8 +6,7 @@ import Notification from './components/Notification'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/Loginform'
 import Togglable from './components/Togglable'
-import './index.css';
-
+import './index.css'
 
 const App = () => {
 
